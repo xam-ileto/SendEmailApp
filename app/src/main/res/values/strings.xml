@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SendOnlyEmailApp</string>
+    <string name="activity1_title">Sent emails</string>
+</resources>
