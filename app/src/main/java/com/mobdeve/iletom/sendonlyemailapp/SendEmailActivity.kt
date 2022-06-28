@@ -198,12 +198,6 @@ class SendEmailActivity : AppCompatActivity() {
             editor.putString("subject", subject)
             editor.putString("body", body)
             editor.commit()
-
-//            return to home screen
-            var goToMainActivity = Intent(this, MainActivity::class.java)
-
-            startActivity(goToMainActivity)
-            finish()
         }
         super.onStop()
     }
