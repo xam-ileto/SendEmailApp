@@ -31,6 +31,14 @@ class SendEmailActivity : AppCompatActivity() {
 
 //        set discard function
         binding.btnDiscard.setOnClickListener { view: View? ->
+            var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+            var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+
+            emailEditor.putString("receiver", "")
+            emailEditor.putString("subject", "")
+            emailEditor.putString("body", "")
+            emailEditor.commit()
+            
             var goToMainActivity = Intent(this, MainActivity::class.java)
 
             startActivity(goToMainActivity)
