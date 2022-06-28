@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         val subject = sharedPreference.getString("subject","")
         val body = sharedPreference.getString("body","")
 
+        //        if no draft exists, do not render draft template
+        if (receiver == "" && subject == "" && body == "")
+            binding.clDraft.visibility = View.GONE
+
         binding.tvDraftReceiver.text = receiver
         binding.tvDraftSubject.text = subject
         binding.tvDraftBody.text = body

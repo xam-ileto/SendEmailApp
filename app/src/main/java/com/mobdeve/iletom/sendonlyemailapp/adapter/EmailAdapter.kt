@@ -48,7 +48,7 @@ class EmailAdapter: RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
 
         fun bindProfile(email: Email) {
             this.email = email
-            
+
             itemBinding.tvEmailReceiver.text = prepareTextForDisplay(this.email.receiver)
             itemBinding.tvEmailSubject.text = prepareTextForDisplay(this.email.subject)
             itemBinding.tvEmailBody.text = prepareTextForDisplay(this.email.body)
