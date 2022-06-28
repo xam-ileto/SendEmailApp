@@ -143,8 +143,8 @@ class SendEmailActivity : AppCompatActivity() {
         //        set shared preference
         var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
 
-//            only proceeds if inputs are not empty
-        if (receiver.length >= 1 && subject.length >= 1 && body.length >= 1) {
+//            only proceeds if there is at least one input
+        if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
 //            save to sharedPreference
             var editor: SharedPreferences.Editor = sharedPreference.edit()
 
