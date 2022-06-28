@@ -82,6 +82,7 @@
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_email_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tv_draft_body"

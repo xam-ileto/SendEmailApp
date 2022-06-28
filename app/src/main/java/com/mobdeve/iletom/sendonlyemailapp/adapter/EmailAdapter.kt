@@ -50,6 +50,9 @@ class EmailAdapter: RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
 
         fun bindProfile(email: Email) {
             this.email = email
+            itemBinding.tvEmailReceiver.text = this.email.receiver
+            itemBinding.tvEmailSubject.text = this.email.subject
+            itemBinding.tvEmailBody.text = this.email.body
         }
 
         override fun onClick(p0: View?) {
