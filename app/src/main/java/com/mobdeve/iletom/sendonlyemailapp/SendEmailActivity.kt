@@ -185,16 +185,13 @@ class SendEmailActivity : AppCompatActivity() {
             editor.putString("subject", subject)
             editor.putString("body", body)
             editor.commit()
-
-//            return to home screen
-            var goToMainActivity = Intent(this, MainActivity::class.java)
-
-            startActivity(goToMainActivity)
-            finish()
-        } else {
-//            show toast saying that inputs are empty
-            Toast.makeText(applicationContext, "Please make sure all entries have text.", Toast.LENGTH_LONG).show()
         }
+
+        //            return to home screen
+        var goToMainActivity = Intent(this, MainActivity::class.java)
+
+        startActivity(goToMainActivity)
+        finish()
     }
 
     override fun onStop() {
