@@ -57,6 +57,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(goToSendEmail)
             finish()
         }
+
+//        view latest email function
+        binding.btnLatest.setOnClickListener { view: View? ->
+            var goToLatestEmail = Intent(this, LatestEmailActivity::class.java)
+
+            var latestEmail = this.emailArrayList.get(this.emailArrayList.size - 1)
+
+            goToLatestEmail.putExtra("receiver", latestEmail.receiver)
+            goToLatestEmail.putExtra("subject", latestEmail.subject)
+            goToLatestEmail.putExtra("body", latestEmail.body)
+
+            startActivity(goToLatestEmail)
+        }
     }
 
 

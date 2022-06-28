@@ -10,5 +10,11 @@ class LatestEmailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLatestEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        render the text
+        var bundle = intent.extras
+        binding.tvLatestEmailReceiver.text = "${bundle!!.getString("receiver")}"
+        binding.tvLatestEmailSubject.text = "${bundle!!.getString("subject")}"
+        binding.tvLatestEmailBody.text = "${bundle!!.getString("body")}"
     }
 }
