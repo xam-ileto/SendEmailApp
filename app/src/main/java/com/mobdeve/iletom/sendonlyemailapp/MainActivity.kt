@@ -54,6 +54,9 @@ class MainActivity : AppCompatActivity() {
 //      send email click function
         binding.btnNew.setOnClickListener { view: View? ->
             var goToSendEmail = Intent(this, SendEmailActivity::class.java)
+            goToSendEmail.putExtra("receiver",receiver)
+            goToSendEmail.putExtra("subject", subject)
+            goToSendEmail.putExtra("body", body)
 
             startActivity(goToSendEmail)
             finish()
@@ -62,6 +65,9 @@ class MainActivity : AppCompatActivity() {
 //        view draft function
         binding.clDraft.setOnClickListener{ view: View? ->
             var goToSendEmail = Intent(this, SendEmailActivity::class.java)
+            goToSendEmail.putExtra("receiver",receiver)
+            goToSendEmail.putExtra("subject", subject)
+            goToSendEmail.putExtra("body", body)
 
             startActivity(goToSendEmail)
             finish()

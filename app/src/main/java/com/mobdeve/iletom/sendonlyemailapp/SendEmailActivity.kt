@@ -22,11 +22,20 @@ class SendEmailActivity : AppCompatActivity() {
         binding = ActivitySendEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
 //        load up previous draft
         var draftSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
-        binding.etReceiver.setText(draftSharedPreference.getString("receiver","").toString())
-        binding.etSubject.setText(draftSharedPreference.getString("subject","").toString())
-        binding.etBody.setText(draftSharedPreference.getString("body","").toString())
+
+        Log.v("receiver", draftSharedPreference.getString("receiver","").toString())
+        Log.v("subject", draftSharedPreference.getString("subject","").toString())
+        Log.v("body", draftSharedPreference.getString("body","").toString())
+
+
+        var bundle = intent.extras
+        binding.etReceiver.setText("${bundle!!.getString("receiver")}")
+        binding.etSubject.setText("${bundle!!.getString("subject")}")
+        binding.etBody.setText("${bundle!!.getString("body")}")
 
 
 //        set discard function
@@ -104,12 +113,19 @@ class SendEmailActivity : AppCompatActivity() {
                 emailEditor.putString("receiver", "")
                 emailEditor.putString("subject", "")
                 emailEditor.putString("body", "")
-                emailEditor.commit()
+                emailEditor.apply()
 
 //                send user back to home screen
                 var goToMainActivity = Intent(this, MainActivity::class.java)
                 startActivity(goToMainActivity)
                 finish()
+
+
+                Log.v("test","test")
+                Log.v("receiver", emailSharedPreference.getString("receiver","").toString())
+                Log.v("subject", emailSharedPreference.getString("subject","").toString())
+                Log.v("body", emailSharedPreference.getString("body","").toString())
+
 
 //                test after
                 allPrefs = getSharedPreferences("SentEmails", Context.MODE_PRIVATE).getAll() as HashMap<String, String>
