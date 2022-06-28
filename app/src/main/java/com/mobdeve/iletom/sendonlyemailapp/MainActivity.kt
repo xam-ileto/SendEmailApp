@@ -11,6 +11,9 @@ import com.mobdeve.iletom.sendonlyemailapp.dao.EmailDAO
 import com.mobdeve.iletom.sendonlyemailapp.dao.EmailDAOImpl
 import com.mobdeve.iletom.sendonlyemailapp.databinding.ActivityMainBinding
 import com.mobdeve.iletom.sendonlyemailapp.model.Email
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -37,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         var sharedPreferenceSentEmails = getSharedPreferences("SentEmails", Context.MODE_PRIVATE)
         var allPrefs: HashMap<String, String>  = getSharedPreferences("SentEmails", Context.MODE_PRIVATE).getAll() as HashMap<String, String>
         emailArrayList = dao.getEmails(allPrefs)
+//        reverses rendering of arraylist
+        Collections.reverse(emailArrayList)
         binding.rvEmailList.setLayoutManager(LinearLayoutManager(applicationContext))
 
         emailAdapter = EmailAdapter(applicationContext, emailArrayList)
