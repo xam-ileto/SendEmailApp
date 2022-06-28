@@ -1,12 +1,10 @@
 package com.mobdeve.iletom.sendonlyemailapp.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.mobdeve.iletom.sendonlyemailapp.databinding.EmailCardItemBinding
 import com.mobdeve.iletom.sendonlyemailapp.model.Email
 
@@ -50,13 +48,18 @@ class EmailAdapter: RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
 
         fun bindProfile(email: Email) {
             this.email = email
-            itemBinding.tvEmailReceiver.text = this.email.receiver
-            itemBinding.tvEmailSubject.text = this.email.subject
-            itemBinding.tvEmailBody.text = this.email.body
+            
+            itemBinding.tvEmailReceiver.text = prepareTextForDisplay(this.email.receiver)
+            itemBinding.tvEmailSubject.text = prepareTextForDisplay(this.email.subject)
+            itemBinding.tvEmailBody.text = prepareTextForDisplay(this.email.body)
         }
 
         override fun onClick(p0: View?) {
 //            clicking recycler view should do nothing
+        }
+
+        private fun prepareTextForDisplay(x: String): String? {
+            return x.replace("(\\n)+".toRegex(), " ")
         }
 
     }
