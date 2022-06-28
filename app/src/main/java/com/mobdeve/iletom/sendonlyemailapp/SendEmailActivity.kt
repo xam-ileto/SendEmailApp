@@ -22,6 +22,13 @@ class SendEmailActivity : AppCompatActivity() {
         binding = ActivitySendEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        load up previous draft
+        var draftSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+        binding.etReceiver.setText(draftSharedPreference.getString("receiver","").toString())
+        binding.etSubject.setText(draftSharedPreference.getString("subject","").toString())
+        binding.etBody.setText(draftSharedPreference.getString("body","").toString())
+
+
 //        set discard function
         binding.btnDiscard.setOnClickListener { view: View? ->
             var goToMainActivity = Intent(this, MainActivity::class.java)
