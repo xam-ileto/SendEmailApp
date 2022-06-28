@@ -89,6 +89,15 @@ class SendEmailActivity : AppCompatActivity() {
                 }
                 editor.commit()
 
+//                remove draft present in emailDraft
+                var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+                var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+
+                emailEditor.putString("receiver", "")
+                emailEditor.putString("subject", "")
+                emailEditor.putString("body", "")
+                emailEditor.commit()
+
 //                send user back to home screen
                 var goToMainActivity = Intent(this, MainActivity::class.java)
                 startActivity(goToMainActivity)
