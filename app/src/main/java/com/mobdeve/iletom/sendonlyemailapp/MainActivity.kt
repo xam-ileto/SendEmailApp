@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobdeve.iletom.sendonlyemailapp.adapter.EmailAdapter
 import com.mobdeve.iletom.sendonlyemailapp.dao.EmailDAO
@@ -75,15 +76,19 @@ class MainActivity : AppCompatActivity() {
 
 //        view latest email function
         binding.btnLatest.setOnClickListener { view: View? ->
-            var goToLatestEmail = Intent(this, LatestEmailActivity::class.java)
+            if (emailArrayList.size == 0)
+                Toast.makeText(applicationContext, "There are no emails currently.", Toast.LENGTH_LONG).show()
+            else {
+                var goToLatestEmail = Intent(this, LatestEmailActivity::class.java)
 
-            var latestEmail = this.emailArrayList.get(this.emailArrayList.size - 1)
+                var latestEmail = this.emailArrayList.get(this.emailArrayList.size - 1)
 
-            goToLatestEmail.putExtra("receiver", latestEmail.receiver)
-            goToLatestEmail.putExtra("subject", latestEmail.subject)
-            goToLatestEmail.putExtra("body", latestEmail.body)
+                goToLatestEmail.putExtra("receiver", latestEmail.receiver)
+                goToLatestEmail.putExtra("subject", latestEmail.subject)
+                goToLatestEmail.putExtra("body", latestEmail.body)
 
-            startActivity(goToLatestEmail)
+                startActivity(goToLatestEmail)
+            }
         }
     }
 
