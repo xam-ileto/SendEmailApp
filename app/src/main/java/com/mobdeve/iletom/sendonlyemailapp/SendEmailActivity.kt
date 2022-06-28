@@ -38,7 +38,7 @@ class SendEmailActivity : AppCompatActivity() {
             emailEditor.putString("subject", "")
             emailEditor.putString("body", "")
             emailEditor.commit()
-            
+
             var goToMainActivity = Intent(this, MainActivity::class.java)
 
             startActivity(goToMainActivity)
@@ -179,6 +179,36 @@ class SendEmailActivity : AppCompatActivity() {
 //            show toast saying that inputs are empty
             Toast.makeText(applicationContext, "Please make sure all entries have text.", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onStop() {
+        var receiver: String = binding.etReceiver.getText().toString()
+        var subject: String = binding.etSubject.getText().toString()
+        var body: String = binding.etBody.getText().toString()
+
+        //        set shared preference
+        var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+
+//            only proceeds if there is at least one input
+        if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
+//            save to sharedPreference
+            var editor: SharedPreferences.Editor = sharedPreference.edit()
+
+            editor.putString("receiver", receiver)
+            editor.putString("subject", subject)
+            editor.putString("body", body)
+            editor.commit()
+
+//            return to home screen
+            var goToMainActivity = Intent(this, MainActivity::class.java)
+
+            startActivity(goToMainActivity)
+            finish()
+        } else {
+//            show toast saying that inputs are empty
+            Toast.makeText(applicationContext, "Please make sure all entries have text.", Toast.LENGTH_LONG).show()
+        }
+        super.onStop()
     }
 
 
