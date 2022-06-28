@@ -204,9 +204,6 @@ class SendEmailActivity : AppCompatActivity() {
 
             startActivity(goToMainActivity)
             finish()
-        } else {
-//            show toast saying that inputs are empty
-            Toast.makeText(applicationContext, "Please make sure all entries have text.", Toast.LENGTH_LONG).show()
         }
         super.onStop()
     }
