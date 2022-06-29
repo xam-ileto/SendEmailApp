@@ -48,7 +48,9 @@
             android:layout_height="wrap_content"
             android:text="DRAFT"
             app:layout_constraintTop_toTopOf="@id/cl_draft"
-            android:textColor="@android:color/holo_red_light"/>
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"
+            android:layout_margin="5dp"/>
 
         <TextView
             android:id="@+id/tv_main_draft_to"
@@ -56,7 +58,11 @@
             android:layout_height="wrap_content"
             android:text="To"
             app:layout_constraintTop_toBottomOf="@id/tv_draft"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_margin="5dp"/>
 
         <TextView
             android:id="@+id/tv_draft_receiver"
@@ -64,7 +70,11 @@
             android:layout_height="wrap_content"
             android:text="Receiver email"
             app:layout_constraintTop_toBottomOf="@id/tv_draft"
-            app:layout_constraintLeft_toRightOf="@+id/tv_main_draft_to"/>
+            app:layout_constraintLeft_toRightOf="@+id/tv_main_draft_to"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_margin="5dp"/>
 
         <TextView
             android:id="@+id/tv_draft_subject"
@@ -72,7 +82,11 @@
             android:layout_height="wrap_content"
             android:text="draft subject"
             app:layout_constraintTop_toBottomOf="@id/tv_draft_receiver"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="3dp"/>
 
         <TextView
             android:id="@+id/tv_draft_body"
@@ -80,7 +94,10 @@
             android:layout_height="wrap_content"
             android:text="body"
             app:layout_constraintTop_toBottomOf="@id/tv_draft_subject"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:singleLine="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
