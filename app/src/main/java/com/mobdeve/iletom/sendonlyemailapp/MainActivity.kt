@@ -76,9 +76,9 @@ class MainActivity : AppCompatActivity() {
                         R.string.yes
                     ) { dialog, which ->
                         var goToSendEmail = Intent(this, SendEmailActivity::class.java)
-                        goToSendEmail.putExtra("receiver",receiver)
-                        goToSendEmail.putExtra("subject", subject)
-                        goToSendEmail.putExtra("body", body)
+                        goToSendEmail.putExtra("receiver","")
+                        goToSendEmail.putExtra("subject", "")
+                        goToSendEmail.putExtra("body", "")
 
                         startActivity(goToSendEmail)
                         finish()
