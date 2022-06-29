@@ -3,6 +3,7 @@ package com.mobdeve.iletom.sendonlyemailapp
 import android.R
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -79,6 +80,14 @@ class MainActivity : AppCompatActivity() {
                         goToSendEmail.putExtra("receiver","")
                         goToSendEmail.putExtra("subject", "")
                         goToSendEmail.putExtra("body", "")
+
+                        var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+                        var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+
+                        emailEditor.putString("receiver", "")
+                        emailEditor.putString("subject", "")
+                        emailEditor.putString("body", "")
+                        emailEditor.commit()
 
                         startActivity(goToSendEmail)
                         finish()
