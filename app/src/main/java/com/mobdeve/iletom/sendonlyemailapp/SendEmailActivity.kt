@@ -40,13 +40,14 @@ class SendEmailActivity : AppCompatActivity() {
 
 //        set discard function
         binding.btnDiscard.setOnClickListener { view: View? ->
-            var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
-            var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
-
-            emailEditor.putString("receiver", "")
-            emailEditor.putString("subject", "")
-            emailEditor.putString("body", "")
-            emailEditor.commit()
+//            var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+//            var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+//
+//            emailEditor.putString("receiver", "")
+//            emailEditor.putString("subject", "")
+//            emailEditor.putString("body", "")
+//            emailEditor.commit()
+            removeDraft()
 
             var goToMainActivity = Intent(this, MainActivity::class.java)
 
@@ -107,13 +108,25 @@ class SendEmailActivity : AppCompatActivity() {
                 editor.commit()
 
 //                remove draft present in emailDraft
-                var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
-                var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+//                var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+//                var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+//
+////                emailEditor.putString("receiver", "")
+////                emailEditor.putString("subject", "")
+////                emailEditor.putString("body", "")
+//                emailEditor.remove("receiver")
+//                emailEditor.remove("subject")
+//                emailEditor.remove("body")
+//                emailEditor.apply()
 
-                emailEditor.putString("receiver", "")
-                emailEditor.putString("subject", "")
-                emailEditor.putString("body", "")
-                emailEditor.apply()
+                var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+//                var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
+//
+//                emailEditor.putString("receiver", "")
+//                emailEditor.putString("subject", "")
+//                emailEditor.putString("body", "")
+//                emailEditor.commit()
+                removeDraft()
 
 //                send user back to home screen
                 var goToMainActivity = Intent(this, MainActivity::class.java)
@@ -121,15 +134,15 @@ class SendEmailActivity : AppCompatActivity() {
                 finish()
 
 
-                Log.v("test","test")
-                Log.v("receiver", emailSharedPreference.getString("receiver","").toString())
-                Log.v("subject", emailSharedPreference.getString("subject","").toString())
-                Log.v("body", emailSharedPreference.getString("body","").toString())
+//                Log.v("test","test")
+//                Log.v("receiver", emailSharedPreference.getString("receiver","").toString())
+//                Log.v("subject", emailSharedPreference.getString("subject","").toString())
+//                Log.v("body", emailSharedPreference.getString("body","").toString())
 
 
 //                test after
-                allPrefs = getSharedPreferences("SentEmails", Context.MODE_PRIVATE).getAll() as HashMap<String, String>
-                Log.v("allPrefs", allPrefs.toString())
+//                allPrefs = getSharedPreferences("SentEmails", Context.MODE_PRIVATE).getAll() as HashMap<String, String>
+//                Log.v("allPrefs", allPrefs.toString())
 
 //                var jsonArrayEmails = JSONArray()
 //
@@ -179,6 +192,9 @@ class SendEmailActivity : AppCompatActivity() {
 //            only proceeds if there is at least one input
         if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
 //            save to sharedPreference
+            Log.v("receiver", receiver)
+            Log.v("subj", subject)
+            Log.v("body", body)
             var editor: SharedPreferences.Editor = sharedPreference.edit()
 
             editor.putString("receiver", receiver)
@@ -194,27 +210,42 @@ class SendEmailActivity : AppCompatActivity() {
         finish()
     }
 
-    override fun onStop() {
-        var receiver: String = binding.etReceiver.getText().toString()
-        var subject: String = binding.etSubject.getText().toString()
-        var body: String = binding.etBody.getText().toString()
+//    override fun onStop() {
+//        var receiver: String = binding.etReceiver.getText().toString()
+//        var subject: String = binding.etSubject.getText().toString()
+//        var body: String = binding.etBody.getText().toString()
+//
+//        //        set shared preference
+//        var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+//
+////            only proceeds if there is at least one input
+//        if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
+////            save to sharedPreference
+//            var editor: SharedPreferences.Editor = sharedPreference.edit()
+//
+//            editor.putString("receiver", receiver)
+//            editor.putString("subject", subject)
+//            editor.putString("body", body)
+//            editor.commit()
+//        }
+//        super.onStop()
+//    }
 
-        //        set shared preference
-        var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+    private fun removeDraft() {
+        Log.v("t", "removing draft")
+        var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+        var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
 
-//            only proceeds if there is at least one input
-        if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
-//            save to sharedPreference
-            var editor: SharedPreferences.Editor = sharedPreference.edit()
+//        emailEditor.putString("receiver", "")
+//        emailEditor.putString("subject", "")
+//        emailEditor.putString("body", "")
+//        emailEditor.remove("receiver")
+//        emailEditor.remove("subject")
+//        emailEditor.remove("body")
+//        emailEditor.apply()
 
-            editor.putString("receiver", receiver)
-            editor.putString("subject", subject)
-            editor.putString("body", body)
-            editor.commit()
-        }
-        super.onStop()
+        var ret: Boolean = emailEditor.clear().commit()
+        Log.v("retval", ret.toString())
     }
-
-
 
 }

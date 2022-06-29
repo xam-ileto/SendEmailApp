@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -33,6 +34,16 @@ class MainActivity : AppCompatActivity() {
         val receiver = sharedPreference.getString("receiver","")
         val subject = sharedPreference.getString("subject","")
         val body = sharedPreference.getString("body","")
+
+        if (receiver != null) {
+            Log.v("receiver in main", receiver)
+        }
+        if (subject != null) {
+            Log.v("subject in main", subject)
+        }
+        if (body != null) {
+            Log.v("body in main", body)
+        }
 
         //        if no draft exists, do not render draft template
         if (receiver == "" && subject == "" && body == "")

@@ -18,16 +18,16 @@ class EmailDAOImpl: EmailDAO {
     }
 
     override fun getEmails(allPrefs: HashMap<String, String>): ArrayList<Email> {
-        Log.v("getEmails", "running code")
+//        Log.v("getEmails", "running code")
         var gson = Gson()
-        var newEmails = ArrayList<Email>()
+//        var newEmails = ArrayList<Email>()
 
         for ((key,value) in allPrefs) {
-            Log.v("key", key)
-            Log.v("value", value)
-            Log.v("valueType", value::class.java.toString())
+//            Log.v("key", key)
+//            Log.v("value", value)
+//            Log.v("valueType", value::class.java.toString())
             var newEmail: Email = gson?.fromJson(value, Email::class.java)
-            Log.v("email receiver", newEmail.receiver)
+//            Log.v("email receiver", newEmail.receiver)
             arrayListEmails.add(newEmail)
         }
 
