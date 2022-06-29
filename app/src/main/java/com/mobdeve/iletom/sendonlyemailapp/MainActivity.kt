@@ -36,10 +36,23 @@ class MainActivity : AppCompatActivity() {
         //        if no draft exists, do not render draft template
         if (receiver == "" && subject == "" && body == "")
             binding.clDraft.visibility = View.GONE
+        else { // if at least one input exists
+            if (receiver == "")
+                binding.tvDraftReceiver.text = "<no receiver in draft>"
+            else if (receiver != null)
+                    binding.tvDraftReceiver.text = prepareTextForDisplay(receiver)
 
-        binding.tvDraftReceiver.text = receiver
-        binding.tvDraftSubject.text = subject
-        binding.tvDraftBody.text = body
+            if (subject == "")
+                binding.tvDraftSubject.text = "<no subject in draft>"
+            else if (subject != null)
+                binding.tvDraftSubject.text = prepareTextForDisplay(subject)
+
+            if (body == "")
+                binding.tvDraftBody.text = "<no body in draft>"
+            else if (body != null)
+                binding.tvDraftBody.text = prepareTextForDisplay(body)
+        }
+
 
         dao = EmailDAOImpl()
         var sharedPreferenceSentEmails = getSharedPreferences("SentEmails", Context.MODE_PRIVATE)
@@ -90,6 +103,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(goToLatestEmail)
             }
         }
+
+
+    }
+
+    private fun prepareTextForDisplay(x: String): String? {
+        return x.replace("(\\n)+".toRegex(), " ")
     }
 
 
