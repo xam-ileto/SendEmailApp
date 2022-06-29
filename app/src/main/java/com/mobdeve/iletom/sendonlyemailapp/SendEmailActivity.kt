@@ -98,6 +98,8 @@ class SendEmailActivity : AppCompatActivity() {
                 startActivity(goToMainActivity)
                 finish()
 
+            } else {
+                Toast.makeText(applicationContext, "Please make sure all entries have text.", Toast.LENGTH_LONG).show()
             }
         }
     }
