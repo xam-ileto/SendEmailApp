@@ -1,11 +1,13 @@
 package com.mobdeve.iletom.sendonlyemailapp
 
+import android.R
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobdeve.iletom.sendonlyemailapp.adapter.EmailAdapter
 import com.mobdeve.iletom.sendonlyemailapp.dao.EmailDAO
@@ -13,8 +15,6 @@ import com.mobdeve.iletom.sendonlyemailapp.dao.EmailDAOImpl
 import com.mobdeve.iletom.sendonlyemailapp.databinding.ActivityMainBinding
 import com.mobdeve.iletom.sendonlyemailapp.model.Email
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -67,13 +67,29 @@ class MainActivity : AppCompatActivity() {
 
 //      send email click function
         binding.btnNew.setOnClickListener { view: View? ->
-            var goToSendEmail = Intent(this, SendEmailActivity::class.java)
-            goToSendEmail.putExtra("receiver",receiver)
-            goToSendEmail.putExtra("subject", subject)
-            goToSendEmail.putExtra("body", body)
+//            TODO add do u want to proceed if draft already present
+            if (binding.clDraft.visibility != View.GONE) { //if there is already a draft present
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle("Draft email present")
+                    .setMessage("By creating a new email, you'll automatically delete the draft. Do you wish to proceed?") // The positive button refers to a "yes, I accept deleted the present draft."
+                    .setPositiveButton(
+                        R.string.yes
+                    ) { dialog, which ->
+                        var goToSendEmail = Intent(this, SendEmailActivity::class.java)
+                        goToSendEmail.putExtra("receiver",receiver)
+                        goToSendEmail.putExtra("subject", subject)
+                        goToSendEmail.putExtra("body", body)
 
-            startActivity(goToSendEmail)
-            finish()
+                        startActivity(goToSendEmail)
+                        finish()
+                    }
+                    .setNegativeButton(R.string.no, null)
+                    .setIcon(R.drawable.ic_dialog_alert)
+                    .show()
+
+            }
+
+
         }
 
 //        view draft function
