@@ -17,6 +17,8 @@ import org.json.JSONObject
 
 class SendEmailActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySendEmailBinding
+    private var clickedSend = false
+    private var discard = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySendEmailBinding.inflate(layoutInflater)
@@ -40,6 +42,7 @@ class SendEmailActivity : AppCompatActivity() {
 
 //        set discard function
         binding.btnDiscard.setOnClickListener { view: View? ->
+            this.discard = true
 //            var emailSharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
 //            var emailEditor: SharedPreferences.Editor = emailSharedPreference.edit()
 //
@@ -64,6 +67,7 @@ class SendEmailActivity : AppCompatActivity() {
 
 //            only proceeds if inputs are not empty
             if (receiver.length >= 1 && subject.length >= 1 && body.length >= 1) {
+                this.clickedSend = true
 //                2 test emails
                 var sharedPreference = getSharedPreferences("SentEmails", Context.MODE_PRIVATE)
                 var editor: SharedPreferences.Editor = sharedPreference.edit()
@@ -211,25 +215,56 @@ class SendEmailActivity : AppCompatActivity() {
     }
 
 //    override fun onStop() {
-//        var receiver: String = binding.etReceiver.getText().toString()
-//        var subject: String = binding.etSubject.getText().toString()
-//        var body: String = binding.etBody.getText().toString()
-//
-//        //        set shared preference
-//        var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
-//
-////            only proceeds if there is at least one input
-//        if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
-////            save to sharedPreference
-//            var editor: SharedPreferences.Editor = sharedPreference.edit()
-//
-//            editor.putString("receiver", receiver)
-//            editor.putString("subject", subject)
-//            editor.putString("body", body)
-//            editor.commit()
-//        }
+//        Log.v("t", "on stop called")
+////        var receiver: String = binding.etReceiver.getText().toString()
+////        var subject: String = binding.etSubject.getText().toString()
+////        var body: String = binding.etBody.getText().toString()
+////        Log.v("receiver onStop", receiver)
+////        Log.v("subject onstop", subject)
+////        Log.v("body onstop", body)
+////
+////        //        set shared preference
+////        var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+////
+//////            only proceeds if there is at least one input
+////        if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
+//////            save to sharedPreference
+////            var editor: SharedPreferences.Editor = sharedPreference.edit()
+////
+////            editor.putString("receiver", receiver)
+////            editor.putString("subject", subject)
+////            editor.putString("body", body)
+////            editor.commit()
+////        }
 //        super.onStop()
 //    }
+
+    override fun onStop() {
+        if (!clickedSend && !discard) { //add to draft if page was closed without sending or discarding
+            Log.v("onStop", "onStop and send")
+            var receiver: String = binding.etReceiver.getText().toString()
+            var subject: String = binding.etSubject.getText().toString()
+            var body: String = binding.etBody.getText().toString()
+            Log.v("receiver onDestroy", receiver)
+            Log.v("subject onDestroy", subject)
+            Log.v("body onDestroy", body)
+
+            //        set shared preference
+            var sharedPreference = getSharedPreferences("EmailDraft", Context.MODE_PRIVATE)
+
+//            only proceeds if there is at least one input
+            if (receiver.length >= 1 || subject.length >= 1 || body.length >= 1) {
+//            save to sharedPreference
+                var editor: SharedPreferences.Editor = sharedPreference.edit()
+
+                editor.putString("receiver", receiver)
+                editor.putString("subject", subject)
+                editor.putString("body", body)
+                editor.commit()
+            }
+        }
+        super.onStop()
+    }
 
     private fun removeDraft() {
         Log.v("t", "removing draft")
