@@ -16,9 +16,6 @@
             android:name=".SendEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".EmailActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
