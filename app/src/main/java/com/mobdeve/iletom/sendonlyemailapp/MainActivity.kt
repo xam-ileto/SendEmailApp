@@ -96,6 +96,14 @@ class MainActivity : AppCompatActivity() {
                     .setIcon(R.drawable.ic_dialog_alert)
                     .show()
 
+            } else {
+                var goToSendEmail = Intent(this, SendEmailActivity::class.java)
+                goToSendEmail.putExtra("receiver","")
+                goToSendEmail.putExtra("subject", "")
+                goToSendEmail.putExtra("body", "")
+
+                startActivity(goToSendEmail)
+                finish()
             }
 
 
