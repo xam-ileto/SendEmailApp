@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 var goToLatestEmail = Intent(this, LatestEmailActivity::class.java)
 
-                var latestEmail = this.emailArrayList.get(this.emailArrayList.size - 1)
+                var latestEmail = this.emailArrayList.get(0)
 
                 goToLatestEmail.putExtra("receiver", latestEmail.receiver)
                 goToLatestEmail.putExtra("subject", latestEmail.subject)
