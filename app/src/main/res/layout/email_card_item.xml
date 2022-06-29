@@ -14,12 +14,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="To"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:singleLine="true"
             android:layout_margin="5dp"/>
         <TextView
             android:id="@+id/tv_email_receiver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="receiver"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:singleLine="true"
             android:layout_margin="5dp"/>
     </LinearLayout>
     <LinearLayout
@@ -31,13 +37,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subject"
-            android:layout_margin="5dp"/>
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="3dp"/>
         <TextView
             android:id="@+id/tv_email_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="body"
-            android:layout_margin="5dp"/>
+            android:singleLine="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"/>
     </LinearLayout>
     </LinearLayout>
 
