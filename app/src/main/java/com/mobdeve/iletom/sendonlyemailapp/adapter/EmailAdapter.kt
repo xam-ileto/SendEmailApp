@@ -17,12 +17,6 @@ class EmailAdapter: RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
         this.emailArrayList = emailArrayList
     }
 
-    fun removeProfile(position: Int) {
-        emailArrayList.removeAt(position)
-        notifyItemRemoved(position)
-        notifyDataSetChanged()
-    }
-
     override fun getItemCount(): Int {
         return emailArrayList.size
     }

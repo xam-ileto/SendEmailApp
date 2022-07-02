@@ -67,11 +67,8 @@ class MainActivity : AppCompatActivity() {
 
 
         dao = EmailDAOImpl()
-        var sharedPreferenceSentEmails = getSharedPreferences("SentEmails", Context.MODE_PRIVATE)
         var allPrefs: HashMap<String, String>  = getSharedPreferences("SentEmails", Context.MODE_PRIVATE).getAll() as HashMap<String, String>
         emailArrayList = dao.getEmails(allPrefs)
-//        reverses rendering of arraylist
-        Collections.reverse(emailArrayList)
         binding.rvEmailList.setLayoutManager(LinearLayoutManager(applicationContext))
 
         emailAdapter = EmailAdapter(applicationContext, emailArrayList)
@@ -138,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 var goToLatestEmail = Intent(this, LatestEmailActivity::class.java)
 
-                var latestEmail = this.emailArrayList.get(0)
+                var latestEmail = this.emailArrayList.get(emailArrayList.size-1)
 
                 goToLatestEmail.putExtra("receiver", latestEmail.receiver)
                 goToLatestEmail.putExtra("subject", latestEmail.subject)
