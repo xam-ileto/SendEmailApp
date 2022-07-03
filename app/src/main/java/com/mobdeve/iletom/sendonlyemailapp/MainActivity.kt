@@ -35,16 +35,6 @@ class MainActivity : AppCompatActivity() {
         val subject = sharedPreference.getString("subject","")
         val body = sharedPreference.getString("body","")
 
-        if (receiver != null) {
-            Log.v("receiver in main", receiver)
-        }
-        if (subject != null) {
-            Log.v("subject in main", subject)
-        }
-        if (body != null) {
-            Log.v("body in main", body)
-        }
-
         //        if no draft exists, do not render draft template
         if (receiver == "" && subject == "" && body == "")
             binding.clDraft.visibility = View.GONE
@@ -76,7 +66,6 @@ class MainActivity : AppCompatActivity() {
 
 //      send email click function
         binding.btnNew.setOnClickListener { view: View? ->
-//            TODO add do u want to proceed if draft already present
             if (binding.clDraft.visibility != View.GONE) { //if there is already a draft present
                 AlertDialog.Builder(this@MainActivity)
                     .setTitle("Draft email present")

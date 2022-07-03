@@ -25,7 +25,6 @@ class EmailDAOImpl: EmailDAO {
             arrayListEmails.add(newEmail)
         }
 
-        Log.v("arrayListEmails", arrayListEmails.toString())
         return arrayListEmails
     }
 
