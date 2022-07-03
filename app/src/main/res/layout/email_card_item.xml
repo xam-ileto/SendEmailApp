@@ -46,7 +46,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="body"
-            android:singleLine="true"
             android:maxLines="2"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"/>
